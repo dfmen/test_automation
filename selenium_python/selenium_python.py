@@ -2,18 +2,19 @@ import unittest
 from pyunitreport import HTMLTestRunner
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from helpers import *
 
 class HelloWorld(unittest.TestCase):
     
     @classmethod
     def setUpClass(cls):
-        cls.driver=webdriver.Chrome(executable_path='C:/py/py_Selenium/venvPy/Include/chromedriver.exe')
+        cls.driver=webdriver.Chrome(executable_path=CHROME_PATH)
         driver=cls.driver
         driver.implicitly_wait(10)
 
     def test_hello_world(self):
         driver=self.driver
-        driver.get('https://www.platzi.com')
+        driver.get(EXECUTION_LINK)
 
     def test_login(self):
         driver = self.driver
