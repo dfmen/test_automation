@@ -6,21 +6,25 @@ from helpers import CHROME_PATH, EXECUTION_LINK
 
 class HelloWorld(unittest.TestCase):
     
+    #Lunch browser
     @classmethod
     def setUpClass(cls):
         cls.driver=webdriver.Chrome(executable_path=CHROME_PATH)
         driver=cls.driver
         driver.implicitly_wait(10)
 
+    #Open web_page
     def test_hello_world(self):
         driver=self.driver
         driver.get(EXECUTION_LINK)
 
+    #Click button "Ingresar"
     def test_login(self):
         driver = self.driver
         button_login = driver.find_element(By.XPATH, '//*[@id="Header-v2"]/nav/div[5]/div/a')
         button_login.click()
-        
+    
+    #Close browser
     @classmethod
     def tearDownClass(cls):
         driver = cls.driver
