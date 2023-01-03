@@ -1,16 +1,19 @@
 import unittest
 from pyunitreport import HTMLTestRunner
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
-from helpers import CHROME_PATH, EXECUTION_LINK
+from helpers import EXECUTION_LINK
 
 class HelloWorld(unittest.TestCase):
     
     #Lunch browser
     @classmethod
     def setUpClass(cls):
-        cls.driver=webdriver.Chrome(executable_path=CHROME_PATH)
+        cls.driver=webdriver.Chrome(service=Service(ChromeDriverManager().install()))
         driver=cls.driver
+        driver.maximize_window()
         driver.implicitly_wait(10)
 
     #Open web_page
@@ -28,6 +31,7 @@ class HelloWorld(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
         driver = cls.driver
+        cls.driver.close()
         cls.driver.quit()
 
 if __name__ == "__main__":
