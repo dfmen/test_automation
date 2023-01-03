@@ -2,7 +2,7 @@ import unittest
 from pyunitreport import HTMLTestRunner
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from helpers import *
+from helpers import CHROME_PATH, EXECUTION_LINK
 
 class HelloWorld(unittest.TestCase):
     
