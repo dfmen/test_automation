@@ -7,30 +7,27 @@ from selenium.webdriver.common.by import By
 from helpers import EXECUTION_LINK
 
 class HelloWorld(unittest.TestCase):
-    #NEW BRANCH --example_2--
+    #Initializing webdriver as driver
+    driver=webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+
     #Lunch browser
     @classmethod
     def setUpClass(cls):
-        cls.driver=webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-        driver=cls.driver
-        driver.maximize_window()
-        driver.implicitly_wait(10)
+        cls.driver.maximize_window()
+        cls.driver.implicitly_wait(10)
 
     #Open web_page
     def test_hello_world(self):
-        driver=self.driver
-        driver.get(EXECUTION_LINK)
+        self.driver.get(EXECUTION_LINK)
 
     #Click button "Ingresar"
     def test_login(self):
-        driver = self.driver
-        button_login = driver.find_element(By.XPATH, '//*[@id="Header-v2"]/nav/div[5]/div/a')
+        button_login = self.driver.find_element(By.XPATH, '//*[@id="Header-v2"]/nav/div[5]/div/a')
         button_login.click()
     
     #Close browser
     @classmethod
     def tearDownClass(cls):
-        driver = cls.driver
         cls.driver.close()
         cls.driver.quit()
 
